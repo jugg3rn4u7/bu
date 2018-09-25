@@ -17,6 +17,7 @@ public class Bu extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
+        final CallbackContext _callbackContext = callbackContext;
         final Context _context = this.cordova.getActivity().getApplicationContext();
        
         if (action.equals("startBu")) {
@@ -33,7 +34,7 @@ public class Bu extends CordovaPlugin {
             };
 
             // Create instance
-            BlinkupController blinkup = BlinkupController.getInstance();
+            final BlinkupController blinkup = BlinkupController.getInstance();
             // Acquire Token
             blinkup.acquireSetupToken(this.cordova.getActivity(), API_KEY, new TokenAcquireCallback() {
                 @Override
@@ -54,7 +55,7 @@ public class Bu extends CordovaPlugin {
 
                 @Override public void onSuccess(JSONObject json) {
                     // return to callback
-                    callbackContext.success(json);
+                    _callbackContext.success(json);
                 }
 
                 @Override public void onError(String errorMsg) {
