@@ -2,6 +2,7 @@ package com.eades.plugin;
 
 import org.apache.cordova.*;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONException;
 import com.electricimp.blinkup.BlinkupController;
 import com.electricimp.blinkup.TokenStatusCallback;
@@ -16,6 +17,9 @@ public class Bu extends CordovaPlugin {
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("startBu")) {
+            // configs
+            JSONObject config = data.getObject(0);
+            String API_KEY = config.getString("API_KEY");
 
             // Server Errors
             ServerErrorHandler errorHandler = new ServerErrorHandler() {
