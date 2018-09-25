@@ -48,6 +48,10 @@
         <activity android:name="com.electricimp.blinkup.InterstitialActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" />
     </config-file>
 
+    <framework src="src/android/bu.gradle" custom="true" type="gradleReference" />
+
+    <resource-file src="libs-aar/blinkup.aar" target="libs/blinkup.aar" />
+
     <source-file src="src/android/Bu.java" target-dir="src/com/eades/plugin/"/>
   </platform>
 
