@@ -23,7 +23,7 @@
       </feature>
     </config-file>
 
-    <edit-config file="AndroidManifest.xml" target="/manifest" mode="replace">
+    <edit-config file="AndroidManifest.xml" target="/manifest" mode="merge">
         <manifest android:hardwareAccelerated="true"></manifest>
         <manifest android:versionCode="10000"></manifest>
         <manifest android:versionName="1.0.0"></manifest>
