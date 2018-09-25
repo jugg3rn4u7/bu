@@ -14,17 +14,13 @@ import android.widget.Toast;
 
 public class Bu extends CordovaPlugin {
 
-    private static android.app.Application application;
-
     public static Context getContext() {
-        return application.getApplicationContext();
+        return this.cordova.getActivity().getApplicationContext();
     }
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-        
-        application = this;
-
+       
         if (action.equals("startBu")) {
             // configs
             JSONObject config = data.getJSONArray(0);
