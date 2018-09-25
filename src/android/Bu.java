@@ -21,7 +21,7 @@ public class Bu extends CordovaPlugin {
        
         if (action.equals("startBu")) {
             // configs
-            JSONObject config = data.getJSONArray(0);
+            JSONObject config = data.getJSONObject(0);
             String API_KEY = config.getString("API_KEY");
 
             // Server Errors
