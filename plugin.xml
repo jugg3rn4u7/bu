@@ -23,6 +23,26 @@
       </feature>
     </config-file>
 
+    <config-file target="AndroidManifest.xml" parent="/*" mode="add">
+        <manifest xmlns:tools="http://schemas.android.com/tools"></manifest>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        <uses-permission android:name="android.permission.WAKE_LOCK" />
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity android:name="com.electricimp.blinkup.WifiSelectActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name="com.electricimp.blinkup.BlinkupGLActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" tools:replace="android:screenOrientation"/>
+        <activity android:name="com.electricimp.blinkup.WifiActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name="com.electricimp.blinkup.WPSActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name="com.electricimp.blinkup.ClearWifiActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity android:name="com.electricimp.blinkup.InterstitialActivity" android:label="BlinkUp" android:configChanges="orientation" android:screenOrientation="portrait" />
+    </config-file>
+
     <source-file src="src/android/Bu.java" target-dir="src/com/eades/plugin/"/>
   </platform>
 
