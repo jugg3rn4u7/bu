@@ -9,6 +9,7 @@ import com.electricimp.blinkup.TokenStatusCallback;
 import com.electricimp.blinkup.TokenAcquireCallback;
 import com.electricimp.blinkup.ServerErrorHandler;
 
+import android.content.Context;
 import android.widget.Toast;
 
 public class Bu extends CordovaPlugin {
