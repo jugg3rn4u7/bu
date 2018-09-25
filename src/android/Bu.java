@@ -35,7 +35,7 @@ public class Bu extends CordovaPlugin {
             // Create instance
             BlinkupController blinkup = BlinkupController.getInstance();
             // Acquire Token
-            blinkup.acquireSetupToken(this, API_KEY, new TokenAcquireCallback() {
+            blinkup.acquireSetupToken(this.cordova.getActivity(), API_KEY, new TokenAcquireCallback() {
                 @Override
                 public void onSuccess(String planID, String token) {
                     blinkup.setPlanID(planID);
@@ -47,7 +47,7 @@ public class Bu extends CordovaPlugin {
             });
             
             // Show network list
-            blinkup.selectWifiAndSetupDevice(this, API_KEY, errorHandler);
+            blinkup.selectWifiAndSetupDevice(this.cordova.getActivity(), API_KEY, errorHandler);
 
             // Token status
             TokenStatusCallback tokenStatusCallback = new TokenStatusCallback() {
