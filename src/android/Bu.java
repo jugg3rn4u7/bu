@@ -11,8 +11,11 @@ import com.electricimp.blinkup.ServerErrorHandler;
 
 import android.content.Context;
 import android.widget.Toast;
+import android.util.Log;
 
 public class Bu extends CordovaPlugin {
+
+    final private String TAG = "EADES BU PLUGIN";
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
@@ -29,6 +32,7 @@ public class Bu extends CordovaPlugin {
             ServerErrorHandler errorHandler = new ServerErrorHandler() {
                 @Override
                 public void onError(String errorMsg) {
+                    Log.e(TAG, "ServerErrorHandler : ERROR : " + errorMsg);
                     Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
             };
@@ -39,10 +43,12 @@ public class Bu extends CordovaPlugin {
             blinkup.acquireSetupToken(this.cordova.getActivity(), API_KEY, new TokenAcquireCallback() {
                 @Override
                 public void onSuccess(String planID, String token) {
+                    Log.i(TAG, "TokenAcquireCallback : SUCCESS ---> plan ID : " + planID + " ; token : " + token);
                     blinkup.setPlanID(planID);
                 }
                 @Override
                 public void onError(String errorMsg) {
+                    Log.e(TAG, "TokenAcquireCallback : ERROR : " + errorMsg);
                     Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -54,15 +60,18 @@ public class Bu extends CordovaPlugin {
             TokenStatusCallback tokenStatusCallback = new TokenStatusCallback() {
 
                 @Override public void onSuccess(JSONObject json) {
+                    Log.i(TAG, "tokenStatusCallback : SUCCESS : " + json.toString());
                     // return to callback
                     _callbackContext.success(json);
                 }
 
                 @Override public void onError(String errorMsg) {
+                    Log.e(TAG, "tokenStatusCallback : ERROR : " + errorMsg);
                     Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override public void onTimeout() {
+                    Log.e(TAG, "tokenStatusCallback : Timed out");
                     Toast.makeText(_context, "Timed out", Toast.LENGTH_SHORT).show();
                 }
             };
