@@ -28,6 +28,9 @@ public class Bu extends CordovaPlugin {
             JSONObject config = data.getJSONObject(0);
             String API_KEY = config.getString("API_KEY");
 
+            Log.i(TAG, "API_KEY : " + API_KEY);
+            Log.i(TAG, "Configuration : " + config.toString());
+
             // Server Errors
             ServerErrorHandler errorHandler = new ServerErrorHandler() {
                 @Override
@@ -65,7 +68,6 @@ public class Bu extends CordovaPlugin {
                 public void onSuccess(String planID, String token) {
                     Log.i(TAG, "TokenAcquireCallback : SUCCESS ---> plan ID : " + planID + " ; token : " + token);
                     blinkup.setPlanID(planID);
-                    blinkup.getTokenStatus(token, tokenStatusCallback);
                 }
                 @Override
                 public void onError(String errorMsg) {
@@ -76,6 +78,7 @@ public class Bu extends CordovaPlugin {
             
             // Show network list
             blinkup.selectWifiAndSetupDevice(this.cordova.getActivity(), API_KEY, errorHandler);
+            blinkup.getTokenStatus(tokenStatusCallback, 10000); // 10 sec timeout
 
             return true;
 
