@@ -14,12 +14,10 @@ import android.widget.Toast;
 
 public class Bu extends CordovaPlugin {
 
-    public static Context getContext() {
-        return this.cordova.getActivity().getApplicationContext();
-    }
-
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+
+        final Context _context = this.cordova.getActivity().getApplicationContext();
        
         if (action.equals("startBu")) {
             // configs
@@ -30,7 +28,7 @@ public class Bu extends CordovaPlugin {
             ServerErrorHandler errorHandler = new ServerErrorHandler() {
                 @Override
                 public void onError(String errorMsg) {
-                    Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
             };
 
@@ -44,7 +42,7 @@ public class Bu extends CordovaPlugin {
                 }
                 @Override
                 public void onError(String errorMsg) {
-                    Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
             });
             
@@ -60,11 +58,11 @@ public class Bu extends CordovaPlugin {
                 }
 
                 @Override public void onError(String errorMsg) {
-                    Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override public void onTimeout() {
-                    Toast.makeText(getContext(), "Timed out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_context, "Timed out", Toast.LENGTH_SHORT).show();
                 }
             };
 
