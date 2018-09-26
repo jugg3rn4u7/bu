@@ -52,7 +52,7 @@
 
     <source-file src="src/android/Bu.java" target-dir="src/com/eades/plugin"/>
     <source-file src="src/android/BuResult.java" target-dir="src/com/eades/plugin"/>
-    <source-file src="src/android/BuSetup.java" target-dir="src/com/eades/plugin"/>
+    <source-file src="src/android/MainActivity.java" target-dir="src/com/eades/plugin"/>
   </platform>
 
   <platform name="ios">
