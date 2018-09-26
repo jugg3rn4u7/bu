@@ -48,6 +48,10 @@ public class Bu extends CordovaPlugin {
             
             // Now, cordova will expect for a result using startActivityForResult and will be handle by the onActivityResult.
             cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
+
+            // Send no result, to execute the callbacks later
+            PluginResult pluginResult = new  PluginResult(PluginResult.Status.NO_RESULT);
+            pluginResult.setKeepCallback(true); // Keep callback
             
             return true;
         } 
