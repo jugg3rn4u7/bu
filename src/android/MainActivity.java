@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "MainActivity -> requestCode : " + Integer.toString(requestCode));
         Log.i(TAG, "MainActivity -> resultCode : " + Integer.toString(resultCode));
-        Log.i(TAG, "MainActivity -> data : " + data.toString());
+        //Log.i(TAG, "MainActivity -> data : " + data.toString());
         blinkup.handleActivityResult(this, requestCode, resultCode, data);
     }
 }
