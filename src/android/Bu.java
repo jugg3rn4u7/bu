@@ -44,7 +44,7 @@ public class Bu extends CordovaPlugin {
             });
 
             // Assign blink up complete intent
-            Intent afterCompleteIntent = new Intent(BuResult.class);
+            Intent afterCompleteIntent = new Intent(_context, BuResult.class);
             afterCompleteIntent.putExtra("callbackContext", callbackContext);
 
             blinkup.intentBlinkupComplete = afterCompleteIntent;
