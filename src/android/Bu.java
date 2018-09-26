@@ -10,6 +10,7 @@ import com.electricimp.blinkup.TokenAcquireCallback;
 import com.electricimp.blinkup.ServerErrorHandler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -20,7 +21,6 @@ public class Bu extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
-        final CallbackContext _callbackContext = callbackContext;
         final Context _context = this.cordova.getActivity().getApplicationContext();
        
         if (action.equals("startBu")) {
@@ -31,61 +31,27 @@ public class Bu extends CordovaPlugin {
             Log.i(TAG, "API_KEY : " + API_KEY);
             Log.i(TAG, "Configuration : " + config.toString());
 
-            // Server Errors
-            ServerErrorHandler errorHandler = new ServerErrorHandler() {
+            // Create instance
+            BlinkupController blinkup = BlinkupController.getInstance();
+
+            // Show network list
+            blinkup.selectWifiAndSetupDevice(this.cordova.getActivity(), API_KEY, new ServerErrorHandler() {
                 @Override
                 public void onError(String errorMsg) {
                     Log.e(TAG, "ServerErrorHandler : ERROR : " + errorMsg);
                     Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
-            };
-
-            // Token status
-            final TokenStatusCallback tokenStatusCallback = new TokenStatusCallback() {
-
-                @Override public void onSuccess(JSONObject json) {
-                    Log.i(TAG, "TokenStatusCallback : SUCCESS : " + json.toString());
-                    // return to callback
-                    _callbackContext.success(json);
-                }
-
-                @Override public void onError(String errorMsg) {
-                    Log.e(TAG, "TokenStatusCallback : ERROR : " + errorMsg);
-                    Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override public void onTimeout() {
-                    Log.e(TAG, "TokenStatusCallback : Timed out");
-                    Toast.makeText(_context, "Timed out", Toast.LENGTH_SHORT).show();
-                }
-            };
-
-            // Create instance
-            final BlinkupController blinkup = BlinkupController.getInstance();
-            // Acquire Token
-            blinkup.acquireSetupToken(this.cordova.getActivity(), API_KEY, new TokenAcquireCallback() {
-                @Override
-                public void onSuccess(String planID, String token) {
-                    Log.i(TAG, "TokenAcquireCallback : SUCCESS ---> plan ID : " + planID + " ; token : " + token);
-                    blinkup.setPlanID(planID);
-                }
-                @Override
-                public void onError(String errorMsg) {
-                    Log.e(TAG, "TokenAcquireCallback : ERROR : " + errorMsg);
-                    Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
-                }
             });
-            
-            // Show network list
-            blinkup.selectWifiAndSetupDevice(this.cordova.getActivity(), API_KEY, errorHandler);
-            blinkup.getTokenStatus(tokenStatusCallback, 10000); // 10 sec timeout
 
+            // Assign blink up complete intent
+            Intent afterCompleteIntent = new Intent(this.cordova.getActivity(), BuResult.class);
+            afterCompleteIntent.putExtra("callbackContext", callbackContext);
+
+            blinkup.intentBlinkupComplete = afterCompleteIntent;
+            
             return true;
-
-        } else {
-            
-            return false;
-
-        }
+        } 
+        
+        return false;
     }
 }
