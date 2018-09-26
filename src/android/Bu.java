@@ -42,20 +42,12 @@ public class Bu extends CordovaPlugin {
             Log.i(TAG, "API_KEY : " + API_KEY);
             Log.i(TAG, "Configuration : " + config.toString());
 
-            // Create instance
-            blinkup = BlinkupController.getInstance();
-
-            // Assign blink up complete intent
-            //blinkup.intentBlinkupComplete = new Intent(_context, BuResult.class);
-
-            // Show network list
-            blinkup.selectWifiAndSetupDevice(this.cordova.getActivity(), API_KEY, new ServerErrorHandler() {
-                @Override
-                public void onError(String errorMsg) {
-                    Log.e(TAG, "ServerErrorHandler : ERROR : " + errorMsg);
-                    Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
-                }
-            });
+            Intent intent = new Intent("com.eades.plugin.BuSetup");
+            // Send some info to the activity to retrieve it later
+            intent.putExtra("API_KEY", API_KEY);
+            
+            // Now, cordova will expect for a result using startActivityForResult and will be handle by the onActivityResult.
+            cordova.startActivityForResult((CordovaPlugin) this, intent, 0);
             
             return true;
         } 

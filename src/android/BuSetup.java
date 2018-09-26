@@ -14,15 +14,14 @@ import com.electricimp.blinkup.ServerErrorHandler;
 
 import java.util.Date;
 
-public class MainActivity extends Activity {
+public class BuSetup extends Activity {
     private static final String API_KEY = "fe829115961cea360f00c5dc61cc43a3";
 
     private BlinkupController blinkup;
     private ServerErrorHandler errorHandler = new ServerErrorHandler() {
         @Override
         public void onError(String errorMsg) {
-            Toast.makeText(
-                    MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(BuSetup.this, errorMsg, Toast.LENGTH_SHORT).show();
         }
     };
 
