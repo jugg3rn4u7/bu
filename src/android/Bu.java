@@ -17,10 +17,12 @@ import android.util.Log;
 public class Bu extends CordovaPlugin {
 
     final private String TAG = "EADES BU PLUGIN";
+    private static CallbackContext sCallbackContext;
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-
+        
+        sCallbackContext = callbackContext;
         final Context _context = this.cordova.getActivity().getApplicationContext();
        
         if (action.equals("startBu")) {
@@ -44,14 +46,15 @@ public class Bu extends CordovaPlugin {
             });
 
             // Assign blink up complete intent
-            Intent afterCompleteIntent = new Intent(_context, BuResult.class);
-            afterCompleteIntent.putExtra("callbackContext", callbackContext);
-
-            blinkup.intentBlinkupComplete = afterCompleteIntent;
+            blinkup.intentBlinkupComplete = new Intent(_context, BuResult.class);
             
             return true;
         } 
         
         return false;
+    }
+
+    static CallbackContext getCallbackContext() {
+        return sCallbackContext;
     }
 }

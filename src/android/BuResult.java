@@ -19,13 +19,11 @@ import android.util.Log;
 public class BuResult extends Activity {
     final private String TAG = "EADES BU PLUGIN";
     private BlinkupController blinkup;
-    private CallbackContext callbackContext;
-
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         blinkup = BlinkupController.getInstance();
-        callbackContext = this.getIntent().getExtras().getParcelable("callbackContext");
     }
 
     @Override
@@ -43,10 +41,10 @@ public class BuResult extends Activity {
             @Override public void onSuccess(JSONObject json) {
                 Log.i(TAG, "TokenStatusCallback : SUCCESS : " + json.toString());
                 // return to callback
-                callbackContext.success(json);
+                Bu.getCallbackContext().success(json);
 
-                // PluginResult pluginResult = new PluginResult(cordovaResultStatus, resultJSON.toString());
-                // pluginResult.setKeepCallback(true); // uses same BlinkUpPlugin object across calls, so need to keep callback
+                // PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json.toString());
+                // pluginResult.setKeepCallback(true);
                 // BlinkUpPlugin.getCallbackContext().sendPluginResult(pluginResult);
             }
 
