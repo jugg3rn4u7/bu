@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     private ServerErrorHandler errorHandler = new ServerErrorHandler() {
         @Override
         public void onError(String errorMsg) {
-            Toast.makeText(BuSetup.this, errorMsg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         blinkup = BlinkupController.getInstance();
-        blinkup.intentBlinkupComplete = new Intent(this, BuResult.class);
+        blinkup.intentBlinkupComplete = new Intent(this, MainActivity.class);
         blinkup.selectWifiAndSetupDevice(this, API_KEY, errorHandler);
     }
 
