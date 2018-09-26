@@ -9,6 +9,8 @@ import com.electricimp.blinkup.TokenStatusCallback;
 import com.electricimp.blinkup.TokenAcquireCallback;
 import com.electricimp.blinkup.ServerErrorHandler;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
