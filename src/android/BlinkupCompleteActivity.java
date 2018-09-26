@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class BuResult extends Activity {
+public class BlinkupCompleteActivity extends Activity {
     final private String TAG = "EADES BU PLUGIN";
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
     private BlinkupController blinkup;
@@ -31,7 +31,7 @@ public class BuResult extends Activity {
         @Override public void onSuccess(JSONObject json) {
             Log.i(TAG, "TokenStatusCallback : SUCCESS : " + json.toString());
             
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(BuResult.this);
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(BlinkupCompleteActivity.this);
             SharedPreferences.Editor editor = pref.edit();
 
             try {
