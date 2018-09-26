@@ -51,11 +51,6 @@ public class BuResult extends Activity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        blinkup.handleActivityResult(this, requestCode, resultCode, data);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
     }
