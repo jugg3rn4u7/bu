@@ -1,5 +1,6 @@
 package com.eades.plugin;
 
+import com.eades.plugin.*;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,7 +45,7 @@ public class Bu extends CordovaPlugin {
             });
 
             // Assign blink up complete intent
-            Intent afterCompleteIntent = new Intent(this.cordova.getActivity(), BuResult.class);
+            Intent afterCompleteIntent = new Intent(BuResult.class);
             afterCompleteIntent.putExtra("callbackContext", callbackContext);
 
             blinkup.intentBlinkupComplete = afterCompleteIntent;
