@@ -45,6 +45,9 @@ public class Bu extends CordovaPlugin {
             // Create instance
             blinkup = BlinkupController.getInstance();
 
+            // Assign blink up complete intent
+            //blinkup.intentBlinkupComplete = new Intent(_context, BuResult.class);
+
             // Show network list
             blinkup.selectWifiAndSetupDevice(this.cordova.getActivity(), API_KEY, new ServerErrorHandler() {
                 @Override
@@ -53,9 +56,6 @@ public class Bu extends CordovaPlugin {
                     Toast.makeText(_context, errorMsg, Toast.LENGTH_SHORT).show();
                 }
             });
-
-            // Assign blink up complete intent
-            blinkup.intentBlinkupComplete = new Intent(_context, BuResult.class);
             
             return true;
         } 
