@@ -42,7 +42,7 @@ public class Bu extends CordovaPlugin {
             Log.i(TAG, "API_KEY : " + API_KEY);
             Log.i(TAG, "Configuration : " + config.toString());
 
-            Intent intent = new Intent("com.eades.plugin.BuSetup");
+            Intent intent = new Intent(this.cordova.getActivity(), BuSetup.class);
             // Send some info to the activity to retrieve it later
             intent.putExtra("API_KEY", API_KEY);
             
