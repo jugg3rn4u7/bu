@@ -23,19 +23,9 @@ public class BuResult extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        blinkup = BlinkupController.getInstance();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        blinkup.handleActivityResult(this, requestCode, resultCode, data);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         final Context _context = this.getApplicationContext();
-
+        
+        blinkup = BlinkupController.getInstance();
         blinkup.getTokenStatus(new TokenStatusCallback() {
 
             @Override public void onSuccess(JSONObject json) {
@@ -58,6 +48,16 @@ public class BuResult extends Activity {
                 Toast.makeText(_context, "Timed out", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        blinkup.handleActivityResult(this, requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
