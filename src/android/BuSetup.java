@@ -16,6 +16,7 @@ import java.util.Date;
 
 public class BuSetup extends Activity {
     private static final String API_KEY = "fe829115961cea360f00c5dc61cc43a3";
+    final private String TAG = "EADES BU PLUGIN";
 
     private BlinkupController blinkup;
     private ServerErrorHandler errorHandler = new ServerErrorHandler() {
