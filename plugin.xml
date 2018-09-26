@@ -51,6 +51,7 @@
     </config-file>
 
     <source-file src="src/android/Bu.java" target-dir="src/com/eades/plugin"/>
+    <source-file src="src/android/BuResult.java" target-dir="src/com/eades/plugin"/>
   </platform>
 
   <platform name="ios">
