@@ -25,7 +25,7 @@ public class BuResult extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         blinkup = BlinkupController.getInstance();
-        callbackContext = this.getIntent().getObjectExtra("callbackContext");
+        callbackContext = this.getIntent().getExtras().getParcelable("callbackContext");
     }
 
     @Override
