@@ -65,6 +65,9 @@ public class Bu extends CordovaPlugin {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(TAG, "requestCode : " + requestCode.toString());
+        Log.i(TAG, "resultCode : " + resultCode.toString());
+        Log.i(TAG, "data : " + data.toString());
         blinkup.handleActivityResult(this.cordova.getActivity(), requestCode, resultCode, data);
     }
 
