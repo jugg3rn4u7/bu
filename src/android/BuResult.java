@@ -24,18 +24,18 @@ public class BuResult extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Context _context = this.getApplicationContext();
-        
+
         blinkup = BlinkupController.getInstance();
         blinkup.getTokenStatus(new TokenStatusCallback() {
 
             @Override public void onSuccess(JSONObject json) {
                 Log.i(TAG, "TokenStatusCallback : SUCCESS : " + json.toString());
                 // return to callback
-                Bu.getCallbackContext().success(json);
+                //Bu.getCallbackContext().success(json);
 
-                // PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json.toString());
-                // pluginResult.setKeepCallback(true);
-                // BlinkUpPlugin.getCallbackContext().sendPluginResult(pluginResult);
+                PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json.toString());
+                pluginResult.setKeepCallback(true);
+                Bu.getCallbackContext().sendPluginResult(pluginResult);
             }
 
             @Override public void onError(String errorMsg) {
